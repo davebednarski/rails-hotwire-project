@@ -1,0 +1,4 @@
+web: exec rails server -p 3000
+db: docker compose up postgres
+js: yarn build --watch
+css: yarn build:css --watch

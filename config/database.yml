@@ -18,10 +18,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("POSTGRESQL_USER") { "postgres" } %>
+  password: <%= ENV.fetch("POSTGRESQL_PASS") { "postgres" } %>
+  url: postgresql://localhost/?pool=5
 
 development:
   <<: *default
-  database: quote_editor_development
+  # Temp db until set it up later.
+  database: postgres
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -80,5 +84,3 @@ test:
 production:
   <<: *default
   database: quote_editor_production
-  username: quote_editor
-  password: <%= ENV["QUOTE_EDITOR_DATABASE_PASSWORD"] %>
